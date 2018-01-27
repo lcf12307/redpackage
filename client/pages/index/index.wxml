@@ -38,7 +38,11 @@
             ></image>
         </view>
     </view>
-
+    <view class="uploader">
+            <view class="uploader-text" bindtap="doTest">
+                <text>测试新接口</text>
+            </view>
+        </view>
     <!-- 信道连接测试 -->
     <view class="tunnel">
         <view class="tunnel-text">
