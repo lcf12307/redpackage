@@ -6,8 +6,7 @@
  * Time: 22:24
  */
 
-use QCloud_WeApp_SDK\Mysql\Mysql as DB;
-use QCloud_WeApp_SDK\Constants;
+
 class User_model extends CI_Model {
 
     public function __construct()
@@ -16,7 +15,7 @@ class User_model extends CI_Model {
         // Your own constructor code
     }
 
-    public static function storeUserInfo ($userinfo) {
+    public  function storeUserInfo ($userinfo) {
         $open_id = $userinfo->openId;
         $param = [
             'open_id' => $userinfo->openId,
@@ -29,17 +28,22 @@ class User_model extends CI_Model {
             'avatarUrl' => $userinfo->avatarUrl,
 
         ];
-        $res = DB::row('cUserinfo', ['*'], compact('open_id'));
-        if ($res === NULL) {
-            try {
-                DB::insert('cUserinfo', $param);
-            } catch (\Exception $e){
-
-            }
+        $query = $this->db->select()
+            ->from("cUserinfo")
+            ->where("open_id",$open_id)
+            ->get();
+        $res = $query->result_array();
+        if (empty($res)) {
+            $this->db->insert('cUserinfo', $param);
         }
     }
 
-    public static function findUserBySKey ($skey) {
-        return DB::row('cUserinfo', ['*'], compact('skey'));
+    public  function findUserBySKey ($skey) {
+        $query = $this->db->select()
+            ->from("cUserinfo")
+            ->where("skey",$skey)
+            ->get();
+        $res = $query->result_array();
+        return $res;
     }
 }

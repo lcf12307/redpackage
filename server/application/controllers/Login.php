@@ -8,8 +8,8 @@ class Login extends CI_Controller {
     public function index() {
         $result = LoginService::login();
         if ($result['loginState'] === Constants::S_AUTH) {
-            $this->load->model('User_model');
             $this->User_model->storeUserInfo($result['userinfo']['userinfo']);
+            unset($result['userinfo']['userinfo']->watermark);
             $this->json([
                 'code' => 0,
                 'data' => $result['userinfo']

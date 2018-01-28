@@ -1,17 +1,21 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-
 class Redpackage extends CI_Controller {
     public function index() {
-        $open_id = $_GET['open_id'];
-        $redis = new Redis();
-        $redis->connect('123.207.236.246', 6379);
-        $redis->set('name','zhou', 10);
-        $key_1 = $redis->get('name');
-
-        echo $key_1;
+//        $this->load->library("driver");
+//        $this->driver->__set("1","word");
+//        var_dump($this->driver->__get("1"));
+        $query = $this->db->select()
+            ->get("cUserinfo");
+        $this->json([
+            'code' => 0,
+            'data' => $query->result_array()
+        ]);
     }
-    public  function phpinfo(){
+    public function test(){
+        $this->load->library("test");
+        $s = $this->test->getTest();
+        echo $s;exit;
     }
 }

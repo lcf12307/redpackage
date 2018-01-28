@@ -75,18 +75,18 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-    'host' => 'localhost',
+    'hostname' => 'localhost',
     'port' => 3306,
-    'user' => 'root',
-    'db'   => 'cAuth',
-    'pass' => 'wx2f7b1a55d21de869',
+    'username' => 'root',
+    'database'   => 'cAuth',
+    'password' => 'wx2f7b1a55d21de869',//
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,
 	'cachedir' => '',
-	'char_set' => 'utf8',
+	'char_set' => 'utf8mb4',
 	'dbcollat' => 'utf8_general_ci',
 	'swap_pre' => '',
 	'encrypt' => FALSE,
